@@ -15,7 +15,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">MHL</a>
+                    <a class="navbar-brand" href="{% url 'home' %}">MHL</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -31,7 +31,18 @@
                                 <li><a href="#">Contact</a></li>
                             </ul>
                         </li>
-                        <li><a href=""><span class="glyphicon glyphicon-user"></span></a></li>
+                        {% if user.is_authenticated %}
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Logout</a></li>
+                                    <li><a href="#">Account Settings</a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}">LOGIN</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
